@@ -13,3 +13,5 @@ Befeht password hash für .env & rest anpassen
 docker starten
     docker compose up -d
     docker compose logs
+
+DNS Record auf traefik.[domain]
