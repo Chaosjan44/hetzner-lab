@@ -1,9 +1,9 @@
 create acme.json
-    touch volumes/acme.json
-    chmod 600 volumes/acme.json
+    touch volume/acme.json
+    chmod 600 volume/acme.json
 
 ACME E-Mail manuel anpassen
-    nano volumes/traefik.yml
+    nano volume/traefik.yml
 
 Befeht password hash für .env & rest anpassen
     sudo apt install apache2-utils
