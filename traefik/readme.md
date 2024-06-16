@@ -1,13 +1,13 @@
 create acme.json
-    touch /volume/acme.json
-    chmod /volume/600 acme.json
+    touch volumes/acme.json
+    chmod 600 volumes/acme.json
 
 ACME E-Mail manuel anpassen
-    nano /volume/traefik.yml
+    nano volumes/traefik.yml
 
 Befeht password hash für .env & rest anpassen
-    sudo apt install <irgendwas mit apache2>
-    echo $(htpasswd -nb "<USER>" "<PW>") | sed -e s/\\$/\\$\\$/g
+    sudo apt install apache2-utils
+    echo $(htpasswd -nb "user" "pw") | sed -e s/\\$/\\$\\$/g
     nano .env
 
 docker starten
