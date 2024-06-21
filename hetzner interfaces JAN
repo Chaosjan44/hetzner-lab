@@ -25,8 +25,8 @@ iface vmbr50 inet static
         bridge-fd 0
         post-up sysctl -w net.ipv4.ip_forward=1
         post-up sysctl -w net.ipv6.conf.all.forwarding=1
-        post-up iptables -t nat -A PREROUTING -i enp0s31f6 -p tcp -m multiport ! --dport 22,8006 -j DNAT --to 10.255.255.254
-        post-up iptables -t nat -A PREROUTING -i enp0s31f6 -p udp -j DNAT --to 10.255.255.254
+        post-up iptables -t nat -A PREROUTING -i vmbr50 -p tcp -m multiport ! --dport 22,8006 -j DNAT --to 10.255.255.254
+        post-up iptables -t nat -A PREROUTING -i vmbr50 -p udp -j DNAT --to 10.255.255.254
         up route add -net 46.4.52.117 netmask 255.255.255.255 gw 46.4.52.65 dev vmbr50 # Additional IP from the same subnet
 #External WAN
 
@@ -36,8 +36,8 @@ iface vmbr51 inet static
         bridge-ports none
         bridge-stp off
         bridge-fd 0
-        post-up iptables -t nat -A POSTROUTING -s '10.255.255.254/30' -o enp0s31f6 -j MASQUERADE
-        post-down iptables -t nat -D POSTROUTING -s '10.255.255.254/30' -o enp0s31f6 -j MASQUERADE
+        post-up iptables -t nat -A POSTROUTING -s '10.255.255.254/30' -o vmbr50 -j MASQUERADE
+        post-down iptables -t nat -D POSTROUTING -s '10.255.255.254/30' -o vmbr50 -j MASQUERADE
 #Internal WAN
 
 auto vmbr0
