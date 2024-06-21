@@ -41,6 +41,22 @@ services:
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
 
+  traefik-certs-dumper:
+    image: ldez/traefik-certs-dumper:latest
+    entrypoint: sh -c '
+      apk add jq
+      ; while ! [ -e /data/acme.json ]
+      || ! [ `jq ".[] | .Certificates | length" /data/acme.json` != 0 ]; do
+      sleep 1
+      ; done
+      && traefik-certs-dumper file --version v2 --watch
+      --source /data/acme.json --dest /data/certs --crt-ext=.pem --key-ext=.pem --domain-subdir'
+    volumes:
+      - ./volume/:/data
+
+# https://github.com/ldez/traefik-certs-dumper?tab=readme-ov-file
+
+
 networks:
   proxy:
     name: proxy
