@@ -1,16 +1,19 @@
 # PfSense Settings
-# WAN IPv4: 10.255.255.254/30
-# WAN IPv4 GW: 10.255.255.253
-### IPv6: 2a01:4f8:140:11f6:ffff:ffff:ffff:fffe/126
-### GW IPv6: 2a01:4f8:140:11f6:ffff:ffff:ffff:fffd
+        # WAN IPv4: 10.255.255.254/30
+        # WAN IPv4 GW: 10.255.255.253
+        ### IPv6: 2a01:4f8:140:11f6:ffff:ffff:ffff:fffe/126
+        ### GW IPv6: 2a01:4f8:140:11f6:ffff:ffff:ffff:fffd
 
-# Primary IPv4: 46.4.52.118/26
-# Primary IPv4 GW: 46.4.52.65
-# Secondary IPv4: 46.4.52.106/26
+# Host itself
+        # Primary IPv4: 46.4.52.118/26
+        # Primary IPv4 GW: 46.4.52.65
+        # Secondary IPv4: 46.4.52.106/26
 
 # LAN
-# IPv4 of proxmox: 172.30.0.2/24
-# GW: 172.30.0.1
+        # IPv4 of proxmox: 172.30.0.2/24
+        # GW: 172.30.0.1
+
+# DMZ
 
 source /etc/network/interfaces.d/*
 
