@@ -1,0 +1,37 @@
+services:
+  app:
+    image: nextcloud
+    restart: always
+    volumes:
+      - ./volume/nextcloud:/var/www/html
+    environment:
+      - MYSQL_PASSWORD=${MYSQLPASSWD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=${MYSQL_HOST}
+      - APACHE_DISABLE_REWRITE_IP=1
+      - TRUSTED_PROXIES=${TRUSTED_PROXIES}
+      - OVERWRITEPROTOCOL=https
+    networks:
+      proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextcloud.entrypoints=http"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.cellary.de`)"
+      - "traefik.http.middlewares.nextcloud-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.nextcloud.middlewares=nextcloud-https-redirect"
+      - "traefik.http.routers.nextcloud-secure.entrypoints=https"
+      - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.${DOMAIN}`)"
+      - "traefik.http.routers.nextcloud-secure.tls=true"
+      - "traefik.http.routers.nextcloud-secure.service=nextcloud"
+      - "traefik.http.middlewares.nextcloud-headers.headers.stsSeconds=15552000"
+      - "traefik.http.middlewares.nextcloud-headers.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.nextcloud-replacer.replacepathregex.regex=^/.well-known*"
+      - "traefik.http.middlewares.nextcloud-replacer.replacepathregex.replacement=/index.php$${1}"
+      - "traefik.http.routers.nextcloud-secure.middlewares=nextcloud-headers,nextcloud-replacer"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
+
+networks:
+  proxy:
+    external: true

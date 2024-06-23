@@ -21,7 +21,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./volume/traefik.yml:/traefik.yml:ro
       - ./volume/acme.json:/acme.json
-      - ./volume/config.yml:/config.yml:ro
+      - ./volume/configs/:/configs/
       - ./volume/logs:/var/log/traefik
     labels:
       - "traefik.enable=true"
@@ -50,10 +50,11 @@ services:
       sleep 1
       ; done
       && traefik-certs-dumper file --version v2 --watch
-      --source /data/acme.json --dest /data/certs --crt-ext=.pem --key-ext=.pem --domain-subdir'
+      --source /data/acme.json --dest /data/certs --domain-subdir'
+    #  --source /data/acme.json --dest /data/certs --crt-ext=.pem --key-ext=.pem --domain-subdir'
     volumes:
       - ./volume/:/data
-
+    
 # https://github.com/ldez/traefik-certs-dumper?tab=readme-ov-file
 
 
