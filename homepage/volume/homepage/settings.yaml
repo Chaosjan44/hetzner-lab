@@ -1,0 +1,45 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings
+
+
+background: 
+  image: /images/wallpaper.jpeg
+favicon: /images/head_round.png
+
+theme: dark
+color: slate
+
+headerStyle: boxed
+base: https://schniebs.net #base URL
+language: en
+target: _blank
+hideVersion: true
+showStats: false
+
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: true
+  showSearchSuggestions: true
+  hideVisitURL: true
+
+# remove these two lines if u don't have key thing
+providers:
+  openweathermap: <yourkeyhere>
+
+
+disableCollapse: true
+
+layout:
+  Group1:
+    style: row
+    header: false
+    columns: 2
+  Group2:
+    header: false
+  Group3:
+    header: false
+  Books:
+    header: false
+    style: row
+    columns: 5

@@ -1,0 +1,20 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/service-widgets
+
+
+# - search:
+#     provider: duckduckgo
+#     target: _blank
+
+
+
+# Remove this if u don't have providers.openweathermap set in settings.yaml
+- openmeteo:
+    latitude: 48.0 # change to yours
+    longitude: 9.0 # change to yours
+    timezone: Europe/Berlin # optional
+    units: metric # or imperial
+    cache: 5 # Time in minutes to cache API responses, to stay within limits
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1

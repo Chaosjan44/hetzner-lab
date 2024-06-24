@@ -1,0 +1,131 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- Group1:
+    - proxmox01.schniebs.net:
+        icon: /images/proxmox.png
+        href: https://<proxmoxurl>:8006
+        siteMonitor: https://<proxmoxurl>:8006
+        widget:
+            type: proxmox
+            url: https://<proxmoxurl>:8006
+            username: <user>
+            password: <password>
+            node: proxmox1
+            fields: ["vms", "resources.cpu", "resources.mem"]
+    - Fritz!Box:
+        icon: /images/avm.png
+        href: http://<fritzboxIP>
+        siteMonitor: http://<fritzboxIP>
+        widget:
+            type: fritzbox
+            url: http://<fritzboxIP>
+            fields: ["uptime", "maxDown", "maxUp", "externalIPAddress"]
+    - Nginx Proxy Manager:
+        icon: /images/proxy.png
+        href: https://<proxyFQDN>
+        siteMonitor: https://<proxyFQDN>
+        widget:
+            type: npm
+            url: http://<proxyIP>:81/
+            username: <user>
+            password: <password>
+    - nextcloud.schniebs.com:
+        icon: /images/nextcloud.png
+        href: https://<nextcloudURL>
+        siteMonitor: https://<nextcloudURL>
+        widget:
+            type: nextcloud
+            url: https://<nextcloudURL>
+            username: <user>
+            password: <password>
+    - Portainer:
+        icon: /images/portainer.png
+        href: https://<portainerIP>:9443
+        siteMonitor: https://<portainerIP>:9443
+        widget:
+            type: portainer
+            url: https://<portainerIP>:9443
+            env: 2
+            key: <API_KEY> # https://gethomepage.dev/latest/widgets/services/portainer/
+    - daten.kolping-schorndorf.de:
+        icon: /images/nextcloud.png
+        href: https://<nextcloudURL>
+        siteMonitor: https://<nextcloudURL>
+        widget:
+            type: nextcloud
+            url: https://<nextcloudURL>
+            username: <user>
+            password: <password>
+
+
+- Group2:
+    - Calender:
+        icon: /images/googlecal.png
+        href: https://calendar.google.com/calendar
+        widget:
+            type: calendar
+            firstDayInWeek: monday # optional - defaults to monday
+            view: monthly # optional - possible values monthly, agenda
+            maxEvents: 10 # optional - defaults to 10
+            showTime: true # optional - show time for event happening today - defaults to false
+            timezone: Europe/Berlin # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
+            integrations: # optional
+                - type: ical # Show calendar events from another service
+                  url: <privateICAL URL> # URL with calendar events
+                  name: <name> # required - name for these calendar events
+                  color: indigo # optional - defaults to pre-defined color for the service (zinc for ical)
+                  params: # optional - additional params for the service
+                    showName: true # optional - show name before event title in event line - defaults to false
+                - type: ical # Show calendar events from another service
+                  url: <privateICAL URL> # URL with calendar events
+                  name: <name> # required - name for these calendar events
+                  color: amber # optional - defaults to pre-defined color for the service (zinc for ical)
+                  params: # optional - additional params for the service
+                    showName: true # optional - show name before event title in event line - defaults to false
+
+- Group3:
+    - MCSer1:
+        icon: /images/minercaft.png
+        widget:
+            type: minecraft
+            url: udp://<MCServer FQDN>:25565 # port stays 25565 when u have srv record
+    - Website1:
+        icon: https://<website FavIco URL>
+        href: https://<website URL>
+        description: <website desc>
+        siteMonitor: https://<website URL>
+    - Website2:
+        icon: https://<website FavIco URL>
+        href: https://<website URL>
+        description: <website desc>
+        siteMonitor: https://<website URL>
+    - MCSer2:
+        icon: /images/minercaft.png
+        widget:
+            type: minecraft
+            url: udp://<MCServer FQDN>:25565 # port stays 25565 when u have srv record
+    - Website3:
+        icon: https://<website FavIco URL>
+        href: https://<website URL>
+        description: <website desc>
+        siteMonitor: https://<website URL>
+
+#Booksmarks at the bottom
+- Books:
+    - Github:
+        icon: https://github.githubassets.com/favicons/favicon-dark.svg
+        href: https://github.com
+    - Cloudflare:
+        icon: /images/cloudflare.png
+        href: https://dash.cloudflare.com/<ID or somrthing>
+    - Hetzner:
+        icon: /images/hetzner.png
+        href: https://console.hetzner.cloud/projects/<YourProjectIDhere>/servers
+    - Ionos:
+        icon: /images/ionos.ico
+        href: https://mein.ionos.de
+    - Deinserverhost:
+        icon: /images/DSH.png
+        href: https://deinserverhost.de
